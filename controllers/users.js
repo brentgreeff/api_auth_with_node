@@ -9,7 +9,9 @@ module.exports = {
   signUp: async (req, res, next) => {
     const { email, password } = req.value.body;
 
-    if ( findUser({ email }) ) {
+    const existing = await findUser({ email });
+    
+    if ( existing ) {
       res.status(403).json({ error: `${email} already taken` })
       return;
     }

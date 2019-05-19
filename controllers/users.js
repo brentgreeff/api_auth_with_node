@@ -1,8 +1,16 @@
+const User = require('../models/user');
+
 module.exports = {
 
   signUp: async (req, res, next) => {
-    console.log('UsersController.signUp() called');
-    console.log(req.value.body);
+    const { email, password } = req.value.body;
+    const newUser = new User({
+      email,
+      password,
+    });
+    await newUser.save();
+
+    res.status(201).json({ user: 'created' });
   },
 
   signIn: async (req, res, next) => {

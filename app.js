@@ -1,6 +1,11 @@
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const express = require('express');
+const mongoose = require('mongoose');
+
+mongoose.connect(
+  'mongodb://localhost/CodeWorkr', { useNewUrlParser: true }
+);
 
 const app = express();
 

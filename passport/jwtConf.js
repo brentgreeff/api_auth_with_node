@@ -2,8 +2,8 @@ const passport = require('passport');
 const JwtStrategy = require('passport-jwt').Strategy;
 const { ExtractJwt } = require('passport-jwt');
 
-const User = require('./models/user');
-const { JWT_SECRET } = require('./configuration');
+const User = require('../models/user');
+const { JWT_SECRET } = require('../configuration');
 
 strategy = new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),

@@ -1,7 +1,7 @@
 const JWT = require('jsonwebtoken');
 const User = require('../models/user');
 const { JWT_SECRET } = require('../configuration');
-const passport = require('../passport');
+const jwtConf = require('../passport/jwtConf');
 
 const findUser = async (email) => {
   return await User.findOne({ email })

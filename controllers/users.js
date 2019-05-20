@@ -1,5 +1,7 @@
 const JWT = require('jsonwebtoken');
 const User = require('../models/user');
+const { JWT_SECRET } = require('../configuration');
+const passport = require('../passport');
 
 const findUser = async (email) => {
   return await User.findOne({ email })
@@ -15,7 +17,7 @@ const getToken = (user) => {
     iss: 'Shnoopsta Ltd',
     iat: new Date().getTime(),
     exp: oneDayFromNow(),
-  }, 'keep-this-secret');
+  }, JWT_SECRET);
 }
 
 module.exports = {
@@ -47,6 +49,6 @@ module.exports = {
   },
 
   secret: async (req, res, next) => {
-    console.log('UsersController.secret() called');
+    res.status(200).json({ accessing: true });
   }
 }

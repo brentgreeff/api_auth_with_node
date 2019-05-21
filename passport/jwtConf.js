@@ -5,12 +5,12 @@ const { ExtractJwt } = require('passport-jwt');
 const User = require('../models/user');
 const { JWT_SECRET } = require('../configuration');
 
-strategy = new JwtStrategy({
+jwt = new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: JWT_SECRET,
 }, getUserFromPayload);
 
-passport.use(strategy);
+passport.use(jwt);
 
 async function getUserFromPayload (payload, done) {
   try {

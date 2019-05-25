@@ -12,10 +12,10 @@ passport.use(local);
 async function getUserFromCredentials (email, password, done) {
   try {
     const user = await User.findOne({ email });
-    if (!user) { return done('invalid credentials', false); }
+    if (!user) return done('invalid credentials', false);
 
     const correctPassword = await user.isValidPassword(password)
-    if (!correctPassword) { return done('Wrong password', false); }
+    if (!correctPassword) return done('Wrong password', false);
 
     done(null, user);
   } catch (error) {

@@ -14,6 +14,4 @@ app.use( bodyParser.json() );
 
 app.use( '/users', require('./routes/users') );
 
-const port = process.env.PORT || 3000;
-app.listen(port);
-console.log(`Server UP on ${port}`);
+module.exports = app;

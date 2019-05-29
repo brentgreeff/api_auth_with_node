@@ -13,12 +13,8 @@ chai.use(chaiHttp);
 let token;
 
 describe('/secret', () => {
-  beforeEach( done => {
-    db.connect().then( () => done() );
-  });
-  afterEach( done => {
-    db.drop().then( () => done() );
-  });
+  beforeEach( async () => await db.connect() );
+  afterEach( async () => await db.drop() );
 
   beforeEach( done => {
     createUser({email: 'new@example.com', password: 'password'})

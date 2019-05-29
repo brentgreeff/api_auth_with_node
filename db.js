@@ -15,4 +15,12 @@ function connect() {
   });
 }
 
-module.exports = { connect };
+function drop() {
+  return new Promise(function(resolve, reject) {
+    mongoose.connection.dropDatabase( () => {
+      mongoose.connection.close( () => resolve() );
+    });
+  });
+}
+
+module.exports = { connect, drop };

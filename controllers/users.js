@@ -1,24 +1,13 @@
-const JWT = require('jsonwebtoken');
-const User = require('../models/user');
-const { JWT_SECRET } = require('../configuration');
+const mongoose = require('mongoose');
+const User = mongoose.model('user');
+
 const jwtConf = require('../passport/jwtConf');
 
 const findUser = async (email) => {
   return await User.findOne({ email })
 }
 
-const oneDayFromNow = () => {
-  return new Date().setDate( new Date().getDate() + 1);
-}
-
-const getToken = (user) => {
-  return JWT.sign({
-    sub: user.id,
-    iss: 'Shnoopsta Ltd',
-    iat: new Date().getTime(),
-    exp: oneDayFromNow(),
-  }, JWT_SECRET);
-}
+const { generateToken } = require('../helpers/tokenHelper');
 
 module.exports = {
 
@@ -40,14 +29,14 @@ module.exports = {
 
     res.status(201).json({
       user: 'created',
-      token: getToken(newUser),
+      token: generateToken(newUser),
     });
   },
 
   signIn: async (req, res, next) => {
     res.status(200).json({
       signedIn: true,
-      token: getToken(req.user)
+      token: generateToken(req.user)
     });
   },
 

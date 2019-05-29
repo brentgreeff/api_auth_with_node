@@ -4,7 +4,19 @@
   "description": "API Authentication with Node - youtube",
   "main": "app.js",
   "scripts": {
-    "dev": "yarn nodemon server.js"
+    "dev": "yarn nodemon server.js",
+    "test": "NODE_ENV=test mocha --recursive --watch",
+    "report": "NODE_ENV=test nyc --reporter=lcov mocha --timeout 5000 __test__/**/*.test.js",
+    "text-report": "NODE_ENV=test nyc --reporter=text-summary mocha --timeout 5000 __test__/**/*.test.js",
+    "nyc": "NODE_ENV=test nyc mocha --timeout 5000 __test__/**/*.test.js"
+  },
+  "nyc": {
+    "exclude": [
+      "__test__",
+      "node_modules"
+    ],
+    "cache": false,
+    "report-dir": "./__test__/report"
   },
   "author": "Brent <brentgreeff@gmail.com>",
   "license": "MIT",
@@ -18,9 +30,19 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.9",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "faker": "^4.1.0",
+    "mocha": "^6.1.4",
+    "nodemon": "^1.19.1",
+    "nyc": "^14.1.1",
+    "rewire": "^4.0.1",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0"
   }
 }

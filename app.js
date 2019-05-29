@@ -2,6 +2,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const express = require('express');
 
+require('./models/User');
 const app = express();
 
 if (!process.env.NODE_ENV == 'test') {

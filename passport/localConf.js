@@ -10,7 +10,7 @@ local = new LocalStrategy({
 
 passport.use(local);
 
-async function getUserFromCredentials (email, password, done) {
+async function getUserFromCredentials(email, password, done) {
   try {
     const user = await User.findOne({ email });
     if (!user) return done('invalid credentials', false);

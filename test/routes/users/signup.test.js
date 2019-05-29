@@ -10,8 +10,8 @@ const { createUser } = require('../../helpers')
 chai.use(chaiHttp);
 
 describe('/signup', () => {
-  beforeEach( async () => await db.connect() );
-  afterEach( async () => await db.drop() );
+  beforeEach( () => db.connect() );
+  afterEach( () => db.drop() );
 
   it('Creates user', (done) => {
     chai

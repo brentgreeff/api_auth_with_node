@@ -13,7 +13,7 @@ jwt = new JwtStrategy({
 
 passport.use(jwt);
 
-async function getUserFromPayload (payload, done) {
+async function getUserFromPayload(payload, done) {
   try {
     const user = await User.findById(payload.sub);
 

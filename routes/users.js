@@ -6,25 +6,24 @@ const jwtConf = require('../passport/jwtConf');
 const localConf = require('../passport/localConf');
 
 const { validateBody, schemas } = require('../helpers/routeHelpers');
-const UsersController = require('../controllers/users');
 
 router.route('/signup')
   .post(
     validateBody(schemas.authSchema),
-    UsersController.signUp
+    require('../controllers/users/signup')
   )
 
 router.route('/signin')
   .post(
     validateBody(schemas.authSchema),
     passport.authenticate('local', { session: false }),
-    UsersController.signIn
+    require('../controllers/users/signin')
   )
 
 router.route('/secret')
   .get(
     passport.authenticate('jwt', { session: false }),
-    UsersController.secret
+    require('../controllers/users/secret')
   )
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const { generateToken } = require('../../helpers/tokenHelper');
-const User = require('mongoose').model('user');
+// const User = require('mongoose').model('user');
 
 module.exports = async function(req, res, next) {
   const { email, password } = req.value.body;

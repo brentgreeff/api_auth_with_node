@@ -13,7 +13,7 @@ describe('/signup', () => {
   beforeEach( () => db.connect() );
   afterEach( () => db.drop() );
 
-  it('Creates user', (done) => {
+  it.only('Creates user', (done) => {
     chai
       .request(app)
       .post('/users/signup')

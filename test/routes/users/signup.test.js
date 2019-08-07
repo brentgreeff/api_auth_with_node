@@ -13,12 +13,13 @@ describe('/signup', () => {
   beforeEach( () => db.connect() );
   afterEach( () => db.drop() );
 
-  it.only('Creates user', (done) => {
+  it('Creates user', function(done) {
     chai
       .request(app)
       .post('/users/signup')
       .send({ email: 'new@example.com', password: 'password' })
       .end( (err, res) => {
+        // console.log(res.text);
         expect(res.status).to.equal(201);
         expect(res.body).not.to.be.empty;
         expect(res.body).to.have.property('token');
@@ -36,8 +37,8 @@ describe('/signup', () => {
         .post('/users/signup')
         .send({ email: 'existing@example.com', password: 'password' })
         .end( (err, res) => {
-          expect(res.status).to.equal(403);
-          expect(res.body).to.be.deep.equal({ error: 'existing@example.com already taken'});
+          expect( res.status ).to.equal(403);
+          expect( res.body ).to.be.deep.equal({ error: 'existing@example.com already taken'});
           done();
         });
     });

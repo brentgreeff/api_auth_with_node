@@ -1,4 +1,4 @@
-> [!CAUTION]
+> [\!CAUTION]
 > This repository is deprecated and no longer maintained.
 
 # api_auth_with_node
